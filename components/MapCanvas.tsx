@@ -40,10 +40,10 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
 
   if (!zone) {
     return (
-      <div className="flex items-center justify-center w-full bg-gray-900 rounded-xl border border-gray-700" style={{ height: '800px' }}>
-        <div className="text-center text-gray-500">
+      <div className="flex items-center justify-center w-full bg-gray-100 rounded-xl border border-gray-200" style={{ height: '800px' }}>
+        <div className="text-center text-gray-400">
           <p className="text-sm">ゾーン未選択</p>
-          <p className="text-xs text-gray-600 mt-1">「ランダムゾーン」をクリックして開始</p>
+          <p className="text-xs text-gray-300 mt-1">「ランダムゾーン」をクリックして開始</p>
         </div>
       </div>
     );
@@ -54,14 +54,14 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
   return (
     <div className="relative w-full">
       {car && (
-        <div className="absolute top-2 right-3 z-10 bg-black/70 text-white text-xs px-2 py-1 rounded font-mono">
+        <div className="absolute top-2 right-3 z-10 bg-white/90 text-gray-800 text-xs px-2 py-1 rounded font-mono shadow border border-gray-200">
           Car ({car.x},{car.y}) {DIRECTION_ARROWS[car.direction]}
         </div>
       )}
 
       <svg
         viewBox={`0 0 ${MAP_SIZE} ${MAP_SIZE}`}
-        className="rounded-xl border border-gray-700 bg-gray-950 w-full"
+        className="rounded-xl border border-gray-200 bg-gray-50 w-full shadow-sm"
         style={{ maxHeight: '800px', display: 'block' }}
       >
         {gridLines.map((g) => (
@@ -71,7 +71,7 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
               y1={PADDING}
               x2={toSvg(g)}
               y2={MAP_SIZE - PADDING}
-              stroke="#1f2937"
+              stroke="#e5e7eb"
               strokeWidth="1"
               strokeDasharray="4,4"
             />
@@ -80,14 +80,14 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
               y1={toSvg(g)}
               x2={MAP_SIZE - PADDING}
               y2={toSvg(g)}
-              stroke="#1f2937"
+              stroke="#e5e7eb"
               strokeWidth="1"
               strokeDasharray="4,4"
             />
-            <text x={toSvg(g)} y={PADDING - 6} textAnchor="middle" fill="#374151" fontSize="9">
+            <text x={toSvg(g)} y={PADDING - 6} textAnchor="middle" fill="#9ca3af" fontSize="9">
               {g}
             </text>
-            <text x={PADDING - 8} y={toSvg(g) + 3} textAnchor="end" fill="#374151" fontSize="9">
+            <text x={PADDING - 8} y={toSvg(g) + 3} textAnchor="end" fill="#9ca3af" fontSize="9">
               {g}
             </text>
           </React.Fragment>
@@ -99,7 +99,7 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
               y1={toSvg(road.y1)}
               x2={toSvg(road.x2)}
               y2={toSvg(road.y2)}
-              stroke="#374151"
+              stroke="#d1d5db"
               strokeWidth="8"
               strokeLinecap="round"
             />
@@ -108,7 +108,7 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
               y1={toSvg(road.y1)}
               x2={toSvg(road.x2)}
               y2={toSvg(road.y2)}
-              stroke="#4B5563"
+              stroke="#e5e7eb"
               strokeWidth="6"
               strokeLinecap="round"
             />
@@ -117,7 +117,7 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
               y1={toSvg(road.y1)}
               x2={toSvg(road.x2)}
               y2={toSvg(road.y2)}
-              stroke="#6B7280"
+              stroke="#f3f4f6"
               strokeWidth="1"
               strokeDasharray="8,6"
               strokeLinecap="round"
@@ -135,18 +135,17 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
               stroke="#3B82F6"
               strokeWidth="1"
               strokeDasharray="6,4"
-              opacity="0.25"
+              opacity="0.2"
             />
-            {/* Current radius */}
             <circle
               cx={toSvg(car.x)}
               cy={toSvg(car.y)}
               r={(12 / 100) * INNER}
-              fill="rgba(59,130,246,0.05)"
+              fill="rgba(59,130,246,0.04)"
               stroke="#3B82F6"
               strokeWidth="1"
               strokeDasharray="3,3"
-              opacity="0.4"
+              opacity="0.35"
             />
           </>
         )}
@@ -160,11 +159,11 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
             ? '#EF4444'
             : isUpcomingSign
               ? '#F59E0B'
-              : '#6B7280';
+              : '#9ca3af';
 
           return (
             <g key={sign.id}>
-              <circle cx={cx} cy={cy} r="14" fill="#111827" stroke={highlight} strokeWidth="2" />
+              <circle cx={cx} cy={cy} r="14" fill="#ffffff" stroke={highlight} strokeWidth="2" />
               <text x={cx} y={cy + 5} textAnchor="middle" fontSize="12">
                 {SIGN_META[sign.type].emoji}
               </text>
@@ -195,7 +194,7 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
 
         {car && (
           <g transform={`translate(${toSvg(car.x)}, ${toSvg(car.y)})`}>
-            <circle cx="0" cy="2" r="12" fill="rgba(0,0,0,0.5)" />
+            <circle cx="0" cy="2" r="12" fill="rgba(0,0,0,0.08)" />
             <circle cx="0" cy="0" r="12" fill="#2563EB" stroke="#93C5FD" strokeWidth="2" />
             <text
               x="0"
@@ -213,18 +212,18 @@ export default function MapCanvas({ zone, car }: MapCanvasProps) {
       </svg>
 
       {car && categorized && (
-        <div className="mt-2 flex flex-wrap gap-2 text-xs text-gray-400">
+        <div className="mt-2 flex flex-wrap gap-2 text-xs text-gray-500">
           <span className="flex items-center gap-1">
             <span className="w-3 h-3 rounded-full border-2 border-red-500 inline-block" />
-            Current ({categorized.current.length})
+            現在地 ({categorized.current.length})
           </span>
           <span className="flex items-center gap-1">
             <span className="w-3 h-3 rounded-full border-2 border-yellow-500 inline-block" />
-            Ahead ({categorized.upcoming.length})
+            前方 ({categorized.upcoming.length})
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded-full border-2 border-gray-600 inline-block" />
-            Behind ({categorized.behind.length})
+            <span className="w-3 h-3 rounded-full border-2 border-gray-400 inline-block" />
+            後方 ({categorized.behind.length})
           </span>
         </div>
       )}

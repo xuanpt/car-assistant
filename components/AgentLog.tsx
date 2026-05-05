@@ -10,7 +10,7 @@ interface AgentLogProps {
 }
 
 const STATUS_COLORS: Record<AgentStatus, { color: string; pulse: boolean }> = {
-  idle: { color: 'bg-gray-500', pulse: false },
+  idle: { color: 'bg-gray-400', pulse: false },
   connecting: { color: 'bg-yellow-500', pulse: true },
   connected: { color: 'bg-green-500', pulse: false },
   speaking: { color: 'bg-blue-500', pulse: true },
@@ -37,9 +37,9 @@ export default function AgentLog({ messages, status }: AgentLogProps) {
   const label = STATUS_LABELS[status];
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-white">
       {/* Status bar */}
-      <div className="flex items-center gap-2 px-3 py-2 border-b border-gray-800 bg-gray-900/50">
+      <div className="flex items-center gap-2 px-3 py-2 border-b border-gray-100 bg-gray-50">
         <span className="relative flex h-2.5 w-2.5">
           {pulse && (
             <span
@@ -48,17 +48,17 @@ export default function AgentLog({ messages, status }: AgentLogProps) {
           )}
           <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${color}`} />
         </span>
-        <span className="text-xs text-gray-400 font-mono">{label}</span>
+        <span className="text-xs text-gray-500 font-mono">{label}</span>
       </div>
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-3 space-y-2 min-h-0">
         {messages.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-gray-600 text-xs text-center px-4">
+          <div className="flex items-center justify-center h-full text-gray-400 text-xs text-center px-4">
             <div>
               <div className="text-3xl mb-2">🎙️</div>
               <p>エージェントを起動してマップ上に車を配置すると開始します。</p>
-              <p className="mt-1 text-gray-700">会話はここに表示されます。</p>
+              <p className="mt-1 text-gray-300">会話はここに表示されます。</p>
             </div>
           </div>
         ) : (
@@ -71,7 +71,7 @@ export default function AgentLog({ messages, status }: AgentLogProps) {
                 className={`max-w-[85%] rounded-xl px-3 py-2 text-sm leading-snug ${
                   msg.role === 'user'
                     ? 'bg-blue-600 text-white rounded-br-sm'
-                    : 'bg-gray-800 text-gray-100 rounded-bl-sm border border-gray-700'
+                    : 'bg-gray-100 text-gray-800 rounded-bl-sm border border-gray-200'
                 }`}
               >
                 <div className="flex items-center gap-1.5 mb-0.5">
