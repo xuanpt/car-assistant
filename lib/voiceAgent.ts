@@ -9,7 +9,7 @@ import {
   getSpeedLimitTool,
   getZoneInfoTool,
   getAllSignsTool,
-} from './agentTools';
+} from './tools';
 import type { Zone, CarPosition } from './mapData';
 
 export type AgentStatus = 'idle' | 'connecting' | 'connected' | 'speaking' | 'listening' | 'error';
@@ -107,6 +107,8 @@ export function useVoiceAgent() {
       session.on('history_updated', (history) => {
         history.forEach((item) => {
           if (item.type !== 'message') return;
+
+          console.log('item', item);
 
           if (
             item.role === 'assistant' &&

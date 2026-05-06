@@ -50,6 +50,10 @@ export function categorizeSignsByDirection(
     }
   });
 
+  console.log('current', current);
+  console.log('upcoming', upcoming);
+  console.log('behind', behind);
+
   return { current, upcoming, behind };
 }
 
@@ -76,6 +80,10 @@ export function buildWarnings(
   const { current, upcoming } = categorizeSignsByDirection(car, zone.signs);
   const warnings: ProximityWarning[] = [];
 
+  console.log('current', current);
+  console.log('upcoming', upcoming);
+  console.log('---------------------------');
+
   current.forEach((sign) => {
     warnings.push({
       sign,
@@ -84,6 +92,10 @@ export function buildWarnings(
       warningText: SIGN_META[sign.type].warning,
     });
   });
+
+  console.log('warnings', warnings);
+  console.log('---------------------------');
+
 
   upcoming.forEach((sign) => {
     warnings.push({
@@ -94,10 +106,15 @@ export function buildWarnings(
     });
   });
 
+  console.log('warnings', warnings);
+  console.log('---------------------------');
+
   warnings.sort((a, b) => {
     if (a.category !== b.category) return a.category === 'current' ? -1 : 1;
     return a.distance - b.distance;
   });
+
+  console.log('warnings', warnings);
 
   return warnings;
 }

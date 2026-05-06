@@ -8,7 +8,7 @@ import {
   getSpeedLimitAtPosition,
   categorizeSignsByDirection,
   calculateDistance,
-} from './proximityEngine';
+} from './signWarning';
 import type { Zone, CarPosition } from './mapData';
 
 export interface AgentContext {
@@ -32,6 +32,12 @@ export const getCurrentContextTool = tool({
     }
     const { zone, car } = agentContext;
     const { current, upcoming } = categorizeSignsByDirection(car, zone.signs);
+
+    console.log('zone', zone);
+    console.log('car', car);
+    console.log('current', current);
+    console.log('upcoming', upcoming);
+    console.log('---------------------------');
 
     return JSON.stringify({
       zone: zone.name,

@@ -1,7 +1,7 @@
 'use client';
 
 import type { Zone } from '@/lib/mapData';
-import type { AgentStatus } from '@/lib/useVoiceAgent';
+import type { AgentStatus } from '@/lib/voiceAgent';
 
 interface ControlPanelProps {
   zone: Zone | null;

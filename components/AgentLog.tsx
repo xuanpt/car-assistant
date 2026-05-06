@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import type { AgentMessage } from '@/lib/useVoiceAgent';
-import type { AgentStatus } from '@/lib/useVoiceAgent';
+import type { AgentMessage } from '@/lib/voiceAgent';
+import type { AgentStatus } from '@/lib/voiceAgent';
 
 interface AgentLogProps {
   messages: AgentMessage[];

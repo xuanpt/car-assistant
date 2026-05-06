@@ -3,7 +3,7 @@
 import React, { useMemo } from 'react';
 import type { Zone, CarPosition } from '@/lib/mapData';
 import { SIGN_META } from '@/lib/mapData';
-import { categorizeSignsByDirection } from '@/lib/proximityEngine';
+import { categorizeSignsByDirection } from '@/lib/signWarning';
 
 interface MapCanvasProps {
   zone: Zone | null;

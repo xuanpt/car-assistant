@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import MapCanvas from '@/components/MapCanvas';
+import MapCanvas from '@/components/Map';
 import ControlPanel from '@/components/ControlPanel';
 import AgentLog from '@/components/AgentLog';
-import { useVoiceAgent } from '@/lib/useVoiceAgent';
+import { useVoiceAgent } from '@/lib/voiceAgent';
 import { randomZone, randomCarPosition } from '@/lib/mapData';
 import type { Zone, CarPosition } from '@/lib/mapData';
 
